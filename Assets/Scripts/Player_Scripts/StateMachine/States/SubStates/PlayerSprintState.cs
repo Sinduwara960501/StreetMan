@@ -13,7 +13,7 @@ public class PlayerSprintState : PlayerGroundedState
     public override void Exit()
     {
         base.Exit();
-        player.SetSprintingVelocity(data.walkingVelocity);
+        player.SetSprintingVelocity(0f);
     }
     public override void LogicUpdate()
     {
