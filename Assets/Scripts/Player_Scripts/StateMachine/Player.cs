@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
         playerInputHandler = GetComponent<PlayerInputHandler>();
         StateMachine = new PlayerStateMachine();
         playerIdelState = new PlayerIdelState(this, StateMachine, playerData, "idle");
-        playerMoveState = new PlayerMoveState(this, StateMachine, playerData, "walke");
+        playerMoveState = new PlayerMoveState(this, StateMachine, playerData, "walk");
     }
     void Start()
     {
