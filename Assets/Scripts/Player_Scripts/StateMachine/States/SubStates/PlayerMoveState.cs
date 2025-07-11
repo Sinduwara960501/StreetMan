@@ -1,3 +1,4 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerMoveState : PlayerGroundedState
@@ -17,13 +18,20 @@ public class PlayerMoveState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (input.x == 0)
+        player.Flip();
+        if (walkInput.x == 0)
         {
             playerStateMachine.ChangeState(player.playerIdelState);
         }
+        if (sprintInput)
+        {
+            playerStateMachine.ChangeState(player.playerSprintState);
+        }
+
     }
     public override void PhysicsUpdate()
     {
+        player.SetWalkingVelocity(data.walkingVelocity * walkInput.x);
         base.PhysicsUpdate();
     }
     public override void DoCheck()

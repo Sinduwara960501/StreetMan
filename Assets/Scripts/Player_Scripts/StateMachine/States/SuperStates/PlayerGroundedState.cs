@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    protected Vector2 input;
+    protected Vector2 walkInput;
+    protected bool sprintInput;
     public PlayerGroundedState(Player player, PlayerStateMachine playerStateMachine, Data data, string _animBoolName) : base(player, playerStateMachine, data, _animBoolName)
     {
 
@@ -18,7 +19,8 @@ public class PlayerGroundedState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        input = player.playerInputHandler.MovementInput;
+        walkInput = player.playerInputHandler.MovementInput;
+        sprintInput = player.playerInputHandler.SprintInput;
     }
     public override void PhysicsUpdate()
     {

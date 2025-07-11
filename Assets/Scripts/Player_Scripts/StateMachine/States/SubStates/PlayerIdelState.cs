@@ -8,6 +8,7 @@ public class PlayerIdelState : PlayerGroundedState
     }
     public override void Enter()
     {
+        player.SetWalkingVelocity(0f);
         base.Enter();
     }
     public override void Exit()
@@ -17,7 +18,7 @@ public class PlayerIdelState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (input.x != 0)
+        if (walkInput.x != 0)
         {
             playerStateMachine.ChangeState(player.playerMoveState);
         }

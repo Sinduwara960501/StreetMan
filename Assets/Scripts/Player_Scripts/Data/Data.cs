@@ -4,6 +4,7 @@ using UnityEngine;
 public class Data : ScriptableObject
 {
     [Header("Movement State")]
-    public float Velocity = 5f;
+    public float walkingVelocity = 3f;
+    public float sprintingVelocity = 6f;
 
 }
