@@ -79,6 +79,9 @@ public class Player : MonoBehaviour
 
     #endregion
     #region Other Functions
+
+    private void AnimationTrigger() => StateMachine.playerState.AnimationTrigger();
+    private void AnimationFinishTrigger() => StateMachine.playerState.AnimationFinishTrigger();
     public void Flip()
     {
         if (playerInputHandler.MovementInput.x < 0 && _scale.x > 0)

@@ -6,6 +6,7 @@ public class PlayerState
     protected PlayerStateMachine playerStateMachine;
     protected Data data;
     protected float stateTime;
+    protected bool isAnimationFinished;
     private string _animBoolName;
 
     public PlayerState(Player player, PlayerStateMachine playerStateMachine, Data data, string _animBoolName)
@@ -20,6 +21,7 @@ public class PlayerState
         DoCheck();
         stateTime = Time.time;
         player.Anim.SetBool(_animBoolName, true);
+        isAnimationFinished = false;
         Debug.Log(_animBoolName);
     }
     public virtual void Exit()
@@ -38,5 +40,8 @@ public class PlayerState
     {
 
     }
+    public virtual void AnimationTrigger() { }
+    public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
+
 
 }

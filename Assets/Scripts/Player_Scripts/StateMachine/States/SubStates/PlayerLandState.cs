@@ -13,10 +13,16 @@ public class PlayerLandState : PlayerGroundedState
         {
             playerStateMachine.ChangeState(player.playerMoveState);
 
-            if (jumpInput)
+            if (sprintInput)
             {
                 playerStateMachine.ChangeState(player.playerSprintState);
             }
+
+
+        }
+        else if (isAnimationFinished)
+        {
+            playerStateMachine.ChangeState(player.playerIdelState);
         }
     }
 }
