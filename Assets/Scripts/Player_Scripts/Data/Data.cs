@@ -12,6 +12,9 @@ public class Data : ScriptableObject
     public float jumpVelocity = 2f;
     public int amountOfJumps = 1;
 
+    [Header("In Air State")]
+    public float coyoteTime = 0.2f;
+
     [Header("Check Variables")]
     public float GroundCheckRadius = 0.3f;
     public LayerMask WhatIsGround;

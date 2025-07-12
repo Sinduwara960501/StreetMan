@@ -33,6 +33,7 @@ public class PlayerGroundedState : PlayerState
         }
         else if (!isGrounded)
         {
+            player.playerInAirState.StartCoyoteTime();
             playerStateMachine.ChangeState(player.playerInAirState);
         }
 

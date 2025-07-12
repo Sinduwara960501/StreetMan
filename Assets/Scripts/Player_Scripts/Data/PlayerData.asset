@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkingVelocity: 3
   sprintingVelocity: 6
-  jumpVelocity: 7
+  jumpVelocity: 4
   amountOfJumps: 2
+  coyoteTime: 0.1
   GroundCheckRadius: 0.3
   WhatIsGround:
     serializedVersion: 2
