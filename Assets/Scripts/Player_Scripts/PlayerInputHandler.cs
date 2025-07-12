@@ -6,6 +6,13 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 MovementInput { get; private set; }
     public bool SprintInput { get; private set; }
     public bool JumpInput { get; private set; }
+    [SerializeField]
+    private float InputHoldTime = 0.2f;
+    private float JumpInputStartTime;
+    private void Update()
+    {
+        CheckJumpInputHoldTime();
+    }
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
@@ -16,6 +23,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             SprintInput = true;
+            JumpInputStartTime = Time.time;
         }
         else if (context.canceled)
         {
@@ -31,5 +39,12 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     public void UseJumpInput() => JumpInput = false;
+    private void CheckJumpInputHoldTime()
+    {
+        if (Time.time >= JumpInputStartTime + InputHoldTime)
+        {
+            JumpInput = false;
+        }
+    }
 }
 
