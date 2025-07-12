@@ -4,6 +4,7 @@ public class PlayerInAirState : PlayerState
 {
     private bool isGrounded;
     private Vector2 walkInput;
+    private bool jumpInput;
 
     public PlayerInAirState(Player player, PlayerStateMachine playerStateMachine, Data data, string _animBoolName) : base(player, playerStateMachine, data, _animBoolName)
     {
@@ -21,9 +22,15 @@ public class PlayerInAirState : PlayerState
     {
         base.LogicUpdate();
         walkInput = player.playerInputHandler.MovementInput;
+        jumpInput = player.playerInputHandler.JumpInput;
+
         if (isGrounded && player.CurruntVelocity.y < 0.01f)
         {
             playerStateMachine.ChangeState(player.playerLandState);
+
+        }else if(jumpInput && player.playerJumpState.CanJump())
+        {
+            playerStateMachine.ChangeState(player.playerJumpState);
         }
         else
         {

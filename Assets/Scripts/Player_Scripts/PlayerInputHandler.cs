@@ -29,10 +29,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             JumpInput = true;
         }
-        else if (context.canceled)
-        {
-            JumpInput = false;
-        }
     }
+    public void UseJumpInput() => JumpInput = false;
 }
 
