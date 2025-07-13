@@ -16,7 +16,7 @@ MonoBehaviour:
   sprintingVelocity: 6
   jumpVelocity: 4
   amountOfJumps: 2
-  coyoteTime: 0.1
+  coyoteTime: 0.2
   GroundCheckRadius: 0.3
   WhatIsGround:
     serializedVersion: 2

@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
 
     public bool CheckIfGrounded()
     {
-        return Physics2D.OverlapCircle(_groundCheck.position, playerData.GroundCheckRadius, playerData.WhatIsGround);
+        return Physics2D.Raycast(_groundCheck.position, Vector2.down, playerData.GroundCheckDistance, playerData.WhatIsGround);
     }
 
     #endregion

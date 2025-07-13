@@ -16,7 +16,7 @@ public class Data : ScriptableObject
     public float coyoteTime = 0.2f;
 
     [Header("Check Variables")]
-    public float GroundCheckRadius = 0.3f;
+    public float GroundCheckDistance = 0.3f;
     public LayerMask WhatIsGround;
 
 }

@@ -21,8 +21,8 @@ public class PlayerInAirState : PlayerState
     }
     public override void LogicUpdate()
     {
-        CheckCoyoteTIme();
         base.LogicUpdate();
+        CheckCoyoteTIme();
         walkInput = player.playerInputHandler.MovementInput;
         jumpInput = player.playerInputHandler.JumpInput;
 
