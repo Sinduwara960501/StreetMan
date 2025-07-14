@@ -5,6 +5,7 @@ public class PlayerInAirState : PlayerState
     private bool isGrounded;
     private Vector2 walkInput;
     private bool jumpInput;
+    private bool sprintInput;
     private bool coyoteTime;
 
     public PlayerInAirState(Player player, PlayerStateMachine playerStateMachine, Data data, string _animBoolName) : base(player, playerStateMachine, data, _animBoolName)
@@ -22,9 +23,10 @@ public class PlayerInAirState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        CheckCoyoteTIme();
+        CheckCoyoteTime();
         walkInput = player.playerInputHandler.MovementInput;
         jumpInput = player.playerInputHandler.JumpInput;
+        sprintInput = player.playerInputHandler.SprintInput;
 
         if (isGrounded && player.CurruntVelocity.y < 0.01f)
         {
@@ -35,11 +37,17 @@ public class PlayerInAirState : PlayerState
         {
             playerStateMachine.ChangeState(player.playerJumpState);
         }
+
         else
         {
             player.Flip();
             player.SetWalkingVelocity(data.walkingVelocity * walkInput.x);
             player.Anim.SetFloat("velocityY", player.CurruntVelocity.y);
+
+            if (CheckSprintBeforeJump())
+            {
+                player.SetSprintingVelocity(data.sprintingVelocity * walkInput.x);
+            }
         }
     }
     public override void PhysicsUpdate()
@@ -51,7 +59,7 @@ public class PlayerInAirState : PlayerState
         base.DoCheck();
         isGrounded = player.CheckIfGrounded();
     }
-    private void CheckCoyoteTIme()
+    private void CheckCoyoteTime()
     {
         if (coyoteTime && Time.time > stateTime + data.coyoteTime)
         {
@@ -59,5 +67,11 @@ public class PlayerInAirState : PlayerState
             player.playerJumpState.NoOfJumpsDecrease();
         }
     }
+
+    private bool CheckSprintBeforeJump() 
+    {
+        return sprintInput && player.playerInputHandler.SprintInputStartTime < stateTime;
+    }
+    
     public void StartCoyoteTime() => coyoteTime = true;
 }

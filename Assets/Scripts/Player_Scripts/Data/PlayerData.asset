@@ -15,9 +15,10 @@ MonoBehaviour:
   walkingVelocity: 3
   sprintingVelocity: 6
   jumpVelocity: 4
+  timeOfJump: 0.05
   amountOfJumps: 2
   coyoteTime: 0.2
-  GroundCheckRadius: 0.3
+  GroundCheckDistance: 0.3
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 8

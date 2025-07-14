@@ -9,6 +9,7 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField]
     private float InputHoldTime = 0.2f;
     private float JumpInputStartTime;
+    public float SprintInputStartTime;
     private void Update()
     {
         CheckJumpInputHoldTime();
@@ -23,7 +24,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             SprintInput = true;
-            JumpInputStartTime = Time.time;
+            SprintInputStartTime = Time.time;
         }
         else if (context.canceled)
         {
@@ -36,6 +37,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             JumpInput = true;
+            JumpInputStartTime = Time.time;
         }
     }
     public void UseJumpInput() => JumpInput = false;

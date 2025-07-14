@@ -10,6 +10,7 @@ public class Data : ScriptableObject
 
     [Header("Jump State")]
     public float jumpVelocity = 2f;
+    public float timeOfJumped = 0.2f;
     public int amountOfJumps = 1;
 
     [Header("In Air State")]
