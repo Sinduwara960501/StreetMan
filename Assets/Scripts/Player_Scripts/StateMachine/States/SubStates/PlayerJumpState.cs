@@ -13,7 +13,6 @@ public class PlayerJumpState : PlayerAbilityState
         player.SetJumpVelocity(data.jumpVelocity);
         isAbilityDone = true;
         noOfJumpLeft--;
-        Debug.Log("Jmps lft " + noOfJumpLeft);
     }
     public bool CanJump()
     {

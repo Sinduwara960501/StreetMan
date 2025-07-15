@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerAbilityState : PlayerState
 {
     protected bool isAbilityDone;
+    protected bool jumpInput;
     private bool isGrounded;
     public PlayerAbilityState(Player player, PlayerStateMachine playerStateMachine, Data data, string _animBoolName) : base(player, playerStateMachine, data, _animBoolName)
     {
@@ -20,6 +21,7 @@ public class PlayerAbilityState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        jumpInput = player.playerInputHandler.JumpInput;
         if (isAbilityDone)
         {
             if (isGrounded && player.CurruntVelocity.y < 0.01f)

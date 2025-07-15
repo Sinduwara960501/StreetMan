@@ -20,4 +20,7 @@ public class Data : ScriptableObject
     public float GroundCheckDistance = 0.3f;
     public LayerMask WhatIsGround;
 
+    [Header("Fire State")]
+    public int BulletAmount = 10;
+
 }

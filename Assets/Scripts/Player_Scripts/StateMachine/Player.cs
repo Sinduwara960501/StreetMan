@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public PlayerInAirState playerInAirState { get; private set; }
     public PlayerLandState playerLandState { get; private set; }
     public PlayerInputHandler playerInputHandler { get; private set; }
+    public PlayerAttackState playerAttackState { get; private set; }
     public Vector2 CurruntVelocity { get; private set; }
     public Vector2 Workspace;
     private Vector3 _scale;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
         playerInAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         playerLandState = new PlayerLandState(this, StateMachine, playerData, "land");
         playerSprintState = new PlayerSprintState(this, StateMachine, playerData, "sprint");
+        playerAttackState = new PlayerAttackState(this, StateMachine, playerData, "shoot");
     }
     void Start()
     {

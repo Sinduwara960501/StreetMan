@@ -5,6 +5,7 @@ public class PlayerGroundedState : PlayerState
     protected Vector2 walkInput;
     protected bool sprintInput;
     protected bool jumpInput;
+    protected bool fireInput;
     private bool isGrounded;
     public PlayerGroundedState(Player player, PlayerStateMachine playerStateMachine, Data data, string _animBoolName) : base(player, playerStateMachine, data, _animBoolName)
     {
@@ -25,8 +26,13 @@ public class PlayerGroundedState : PlayerState
         walkInput = player.playerInputHandler.MovementInput;
         sprintInput = player.playerInputHandler.SprintInput;
         jumpInput = player.playerInputHandler.JumpInput;
+        fireInput = player.playerInputHandler.ShootInput;
 
-        if (jumpInput && player.playerJumpState.CanJump())
+        if (fireInput)
+        {
+            playerStateMachine.ChangeState(player.playerAttackState);
+        }
+        else if (jumpInput && player.playerJumpState.CanJump())
         {
             player.playerInputHandler.UseJumpInput();
             playerStateMachine.ChangeState(player.playerJumpState);
