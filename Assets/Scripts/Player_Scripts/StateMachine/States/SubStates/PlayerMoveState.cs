@@ -1,4 +1,3 @@
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerMoveState : PlayerGroundedState
@@ -14,6 +13,7 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Exit()
     {
         base.Exit();
+        player.SetWalkingVelocity(0f);
     }
     public override void LogicUpdate()
     {
