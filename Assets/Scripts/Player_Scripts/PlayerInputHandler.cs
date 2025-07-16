@@ -1,16 +1,28 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum CombatInputs
+{
+    primary,
+    secondary
+}
 public class PlayerInputHandler : MonoBehaviour
 {
     public Vector2 MovementInput { get; private set; }
     public bool SprintInput { get; private set; }
     public bool JumpInput { get; private set; }
-    public bool ShootInput { get; private set; }
+    public bool[] AttackInputs { get; private set; }
     [SerializeField]
     private float InputHoldTime = 0.2f;
     private float JumpInputStartTime;
     public float SprintInputStartTime;
+
+    private void Start()
+    {
+        int Count = Enum.GetValues(typeof(CombatInputs)).Length;
+        AttackInputs = new bool[Count];
+    }
     private void Update()
     {
         CheckJumpInputHoldTime();
@@ -33,11 +45,27 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    public void OnShootInput(InputAction.CallbackContext context)
+    public void OnPrimaryAttackInput(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            ShootInput = true;
+            AttackInputs[(int)CombatInputs.primary] = true;
+        }
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.primary] = false;
+        }
+    }
+
+    public void OnSecondaryAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.secondary] = true;
+        }
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.secondary] = false;
         }
     }
 
@@ -50,7 +78,6 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
     public void UseJumpInput() => JumpInput = false;
-    public void UseShootInput() => ShootInput = false;
     private void CheckJumpInputHoldTime()
     {
         if (Time.time >= JumpInputStartTime + InputHoldTime)

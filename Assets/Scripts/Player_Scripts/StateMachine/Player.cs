@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    #region Variables
+    #region State Variables
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdelState playerIdelState { get; private set; }
     public PlayerMoveState playerMoveState { get; private set; }
@@ -11,12 +11,16 @@ public class Player : MonoBehaviour
     public PlayerInAirState playerInAirState { get; private set; }
     public PlayerLandState playerLandState { get; private set; }
     public PlayerInputHandler playerInputHandler { get; private set; }
-    public PlayerAttackState playerAttackState { get; private set; }
+    public PlayerAttackState playerPrimaryAttackState { get; private set; }
+    public PlayerAttackState playerSecondoryAttackState { get; private set; }
+    #endregion
+    #region Other Variables
     public Vector2 CurruntVelocity { get; private set; }
     public Vector2 Workspace;
     private Vector3 _scale;
     public Animator Anim { get; private set; }
     public Rigidbody2D RB { get; private set; }
+    public PlayerInventory playerInventory { get; private set; }
     [SerializeField] Data playerData;
     [SerializeField] private Transform _groundCheck;
     #endregion
@@ -24,6 +28,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
 
+        playerInventory = GetComponent<PlayerInventory>();
         Anim = GetComponent<Animator>();
         playerInputHandler = GetComponent<PlayerInputHandler>();
         RB = GetComponent<Rigidbody2D>();
@@ -34,10 +39,12 @@ public class Player : MonoBehaviour
         playerInAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
         playerLandState = new PlayerLandState(this, StateMachine, playerData, "land");
         playerSprintState = new PlayerSprintState(this, StateMachine, playerData, "sprint");
-        playerAttackState = new PlayerAttackState(this, StateMachine, playerData, "shoot");
+        playerPrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+        playerSecondoryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
     }
     void Start()
     {
+        playerPrimaryAttackState.SetAttack(playerInventory.attackManagers[(int)CombatInputs.primary]);
         StateMachine.Initialize(playerIdelState);
         _scale = transform.localScale;
     }

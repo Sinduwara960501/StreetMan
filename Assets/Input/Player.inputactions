@@ -33,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire",
+                    "name": "PrimaryAttack",
                     "type": "Button",
                     "id": "adb83fd7-7c1e-4086-bb4f-49df3fe38d21",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondaryAttack",
+                    "type": "Button",
+                    "id": "147da236-69f2-4bfd-9192-a7a74bae8da2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -138,7 +147,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard",
-                    "action": "Fire",
+                    "action": "PrimaryAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f01ec043-edb1-4ac6-8bd2-2b7b4701510b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondaryAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
